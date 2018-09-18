@@ -80,7 +80,7 @@ namespace BugFixApplication {
          foreach (Object attributes in type.GetCustomAttributes(false)) {
             DeBugInfo dbi = (DeBugInfo)attributes;
             
-            if (null != dbi) {
+            if (dbi != null) {
                Console.WriteLine("Bug no: {0}", dbi.BugNo);
                Console.WriteLine("Developer: {0}", dbi.Developer);
                Console.WriteLine("Last Reviewed: {0}", dbi.LastReview);
@@ -94,7 +94,7 @@ namespace BugFixApplication {
             foreach (Attribute a in m.GetCustomAttributes(true)) {
                DeBugInfo dbi = (DeBugInfo)a;
                
-               if (null != dbi) {
+               if (dbi != null) {
                   Console.WriteLine("Bug no: {0}, for Method: {1}", dbi.BugNo, m.Name);
                   Console.WriteLine("Developer: {0}", dbi.Developer);
                   Console.WriteLine("Last Reviewed: {0}", dbi.LastReview);
