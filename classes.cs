@@ -1,6 +1,6 @@
 using System;
 
-namespace BoxApplication {
+namespace BoxApplication 
 
     class Box {
        public double length;   // Length of a box
@@ -10,7 +10,7 @@ namespace BoxApplication {
     
     class Boxtester {
 
-        static void Main(string[] args) {
+        static void Main(string[] args) 
             Box Box1 = new Box();   // Declare Box1 of type Box
             Box Box2 = new Box();   // Declare Box2 of type Box
             double volume = 0.0;    // Store the volume of a box here
@@ -37,7 +37,7 @@ namespace BoxApplication {
     }
 }
 
-namespace LineApplication {
+namespace LineApplication 
 
    class Line {
       private double length;   // Length of a line
@@ -64,7 +64,7 @@ namespace LineApplication {
       }
    }
 }
-namespace LineApplication {
+namespace LineApplication 
 
    class Line {
       private double length;   // Length of a line
