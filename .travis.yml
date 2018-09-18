@@ -1,18 +1,18 @@
 # Disable sudo to speed up the build
-sudo:                           false
+sudo:              false
 
 # Set the default build language
-language:                       python
+language:          csharp
 
-# Set the default build language version
-python:                         3.6.6
+# Set the build version
+mono:
+  - latest
+
+# Set the solution file
+#solution:          solution-name.sln
 
 # Set the default build branch
-branches:                       master
-
-cache:
-    # Ensure pip packages is cached
-    - pip
+branches:          master
 
 before_install:
     # Configure the access token to enable repository pushing
@@ -30,4 +30,4 @@ script:
 
 notifications:
     # Disable build status notifications via email
-    email:                      false
+    email:         false
