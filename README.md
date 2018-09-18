@@ -4,4 +4,4 @@
 
 This is a build that I am going to create in C sharp and is a VR game.
 
- most valuable person: elemental9
+> The most valuable person: elemental9
