@@ -31,3 +31,8 @@ script:
 notifications:
     # Disable build status notifications via email
     email:         false
+
+env:
+    global:
+        # GitHub personal access token
+        secure: SbZDVzigHtnLT+Flq14r14+kuk8sTRrsHyCPZUULVSeazcDPeAPoNbHCh6qZX+cAfkV/hsqJLg0vcFws0VJ+wtrP9+Y392if+Fr+NwXJ5vO+rT2Xi+x2n9ztw8/zdF34g3n1/VqJqUoA+WIoNCJUuzpTQA7+d/IKqPFFA2wXE19tmlsXiWqQWov0vw7PxEY9PFFSF1ox7h0RXE3L+NBqv45cuf8JSADFfWSpOYRDIxX3qsCwv8tTp4dN7gJ5GM/SHWjNuvcjei7jdxTwyAU6q6ttI3b9dqcgBDGhMg3FfJEghC0IPk2JgfaDT3jt/0g6bmdvGt1pTHKrZOg+nJZybLLWo3+ACRy36xYQIQaMTV3fUlsE/tS50kz9Y7/pPdda8pbrfuf3ZDa9RnNojyxbxGGwaVwL050rp+ENV+SmQqYek+GGcnLNZmC4vpmdD4ZSwhlCXOrleNSXkJrLYijPKszrUimQbljnzNXUsA8/Ox/jaZT9/ITYQUkax+4viTZkcNpDYAAAJ0kRgsk86MMfJsU4Ul2YHMXcwzdKh4xdWNMipho6FCBNQrRLGToasFyHUWR36bSZMEZNinmdwcE4N2F/5p175V2eNX9nnDXAC4ENPHRU69dkmuR/jBL4f6l/4oIbOdwJ6+7ycG+e2Hko6kbs0wjU/AQ+qJaY5lVgyhg=
