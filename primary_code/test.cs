@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace BugFixApplication 
+namespace BugFixApplication {
    //a custom attribute BugFix to be assigned to a class and its members
    [AttributeUsage(
       AttributeTargets.Class |
@@ -11,33 +11,33 @@ namespace BugFixApplication
       AttributeTargets.Property,
       AllowMultiple = true)]
 
-   public class DeBugInfo : System.Attribute 
+   public class DeBugInfo : System.Attribute {
       private int bugNo;
       private string developer;
       private string lastReview;
       public string message;
       
-      public DeBugInfo(int bg, string dev, string d) 
+      public DeBugInfo(int bg, string dev, string d) {
          this.bugNo = bg;
          this.developer = dev;
-         this.lastReview = d;{
+         this.lastReview = d;
       }
-      public int BugNo 
+      public int BugNo {
          get {
-            return bugNo;{
+            return bugNo;
          }
       }
-      public string Developer 
+      public string Developer {
          get {
-            return developer;{
+            return developer;
          }
       }
-      public string LastReview 
+      public string LastReview {
          get {
             return lastReview;
          }
       }
-      public string Message 
+      public string Message {
          get {
             return message;
          }
@@ -49,7 +49,7 @@ namespace BugFixApplication
    [DeBugInfo(45, "Zara Ali", "12/8/2012", Message = "Return type mismatch")]
    [DeBugInfo(49, "Nuha Ali", "10/10/2012", Message = "Unused variable")]
    
-   class Rectangle 
+   class Rectangle {
       //member variables
       protected double length;
       protected double width;
@@ -71,7 +71,7 @@ namespace BugFixApplication
    }//end class Rectangle
    
    class ExecuteRectangle {
-      static void Main(string[] args) 
+      static void Main(string[] args) {
          Rectangle r = new Rectangle(4.5, 7.5);
          r.Display();
          Type type = typeof(Rectangle);
@@ -80,7 +80,7 @@ namespace BugFixApplication
          foreach (Object attributes in type.GetCustomAttributes(false)) {
             DeBugInfo dbi = (DeBugInfo)attributes;
             
-            if (null != dbi) 
+            if (null != dbi) {
                Console.WriteLine("Bug no: {0}", dbi.BugNo);
                Console.WriteLine("Developer: {0}", dbi.Developer);
                Console.WriteLine("Last Reviewed: {0}", dbi.LastReview);
