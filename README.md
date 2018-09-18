@@ -1,6 +1,6 @@
 # OASIS
 
-status:
+Status:
 
 [![Travis CI Status](https://img.shields.io/travis/com/elemental9/OASIS.svg?style=for-the-badge)](https://travis-ci.com/elemental9/OASIS)
 
