@@ -1,0 +1,33 @@
+# Disable sudo to speed up the build
+sudo:                           false
+
+# Set the default build language
+language:                       python
+
+# Set the default build language version
+python:                         3.6.6
+
+# Set the default build branch
+branches:                       master
+
+cache:
+    # Ensure pip packages is cached
+    - pip
+
+before_install:
+    # Configure the access token to enable repository pushing
+    - git remote set-url origin https://elemental9:${github_token}@github.com/elemental9/OASIS.git
+
+    # Set the commit username
+    - git config --global user.name "SOS Bot"
+
+    # Set the commit email
+    - git config --global user.email "43331169+elemental9@users.noreply.github.com"
+
+script:
+    # Print Hello World
+    - echo Hello World
+
+notifications:
+    # Disable build status notifications via email
+    email:                      false
