@@ -32,7 +32,7 @@ script:
     - cd primary_code
 
     # Compile all of the csharp files
-    - find -type f -name "*.cs" -exec csc "{}" \;
+    - find -type f -name "*.cs" -exec csc "{}" || exit 1 \;
 
 notifications:
     # Disable build status notifications via email
