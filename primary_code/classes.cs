@@ -9,7 +9,6 @@ namespace BoxApplication
     }
     
     class Boxtester {
-
         static void Main(string[] args) 
             Box Box1 = new Box();   // Declare Box1 of type Box
             Box Box2 = new Box();   // Declare Box2 of type Box
