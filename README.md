@@ -8,12 +8,12 @@ Status:
 
 This is a build that I am going to create in C sharp and is a VR game.
 
-> The most valuable person: richienb
+> The most valuable person: Richienb
 
-> creator: elemental9
+> creator: Elemental9
 
-> most fixed problems: elemental9
+> most fixed problems: Elemental9
 
-> 30 fixed errors by elemental9
+> 30 fixed errors by Elemental9
 
 > 28 errors made by Richienb
