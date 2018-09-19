@@ -12,4 +12,4 @@ This is a build that I am going to create in C sharp and is a VR game.
 
 >creator: elemental9
 
->most fixed problems: elemental9
+>most fixed problems: elemental9                       14 fixed errors
