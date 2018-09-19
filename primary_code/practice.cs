@@ -18,7 +18,6 @@ namespace BingoConLabels
 		{
 			InitializeComponent();
 		}
-
 		private void button1_Click(object sender, EventArgs e)
 		{
 			int RandomNumber = RandomClass.Next(1, 100);
@@ -31,7 +30,6 @@ namespace BingoConLabels
 				label.BackColor = Color.White;
 			}
 		}
-
 		private void button2_Click(object sender, EventArgs e)
 		{
 			int RandomNumber = RandomClass.Next(1, 100);
@@ -63,19 +61,10 @@ namespace BingoConLabels
 							MessageBox.Show("Has hecho BINGO en el 2do Carton!");
 							break;
 						}
-
 					}
-
 				}
-
-
-
-
-
 			}
-
 		}
-
 		private void button3_Click(object sender, EventArgs e)
 		{
 			int RandomNumber = RandomClass.Next(1, 100);
@@ -88,9 +77,7 @@ namespace BingoConLabels
 				label.BackColor = Color.White;
 				label.Text = "";
 			}
-
 		}
-
 		private void nuevoJuegoToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			int RandomNumber = RandomClass.Next(1, 100);
@@ -103,23 +90,16 @@ namespace BingoConLabels
 				label.Text = Convert.ToString(RandomClass.Next(1, 100));
 				label.BackColor = Color.White;
 			}
-
 		}
-
 		private void salirToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Close();
 		}
-
 		private void acercaDelJuegoToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 				AboutBox1 form = new AboutBox1();
 				form.Show();
 				// or
-
-
 		}
-
-
 	}
 }

@@ -14,6 +14,6 @@ This is a build that I am going to create in C sharp and is a VR game.
 
 >most fixed problems: elemental9 
 
->15 fixed errors by elemental9
+>30 fixed errors by elemental9
 
->11 errors made by richienb
+>28 errors made by richienb
