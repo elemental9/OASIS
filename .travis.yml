@@ -25,8 +25,11 @@ before_install:
     - git config --global user.email "43331169+elemental9@users.noreply.github.com"
 
 script:
-    # Print Hello World
-    - echo Hello World
+    # Navigate to the primary code directory
+    - cd primary_code
+
+    # Compile all of the csharp files
+    - find  -type f  -name "*.cs" -exec csc "{}" \;
 
 notifications:
     # Disable build status notifications via email
