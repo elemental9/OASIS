@@ -6,7 +6,7 @@ Status:
 
 [![CodeFactor Status](https://www.codefactor.io/repository/github/elemental9/oasis/badge/master?style=for-the-badge)](https://www.codefactor.io/repository/github/elemental9/oasis/overview/master)
 
-This is a build that I am going to create in C sharp and is a VR game.
+This is a build that I am going to create in mostly C# and is a VR game.
 
 > The most valuable person: Richienb
 
