@@ -89,8 +89,7 @@ namespace BugFixApplication {
          }
          
          //iterating through the method attribtues
-         foreach (MethodInfo m in type.GetMethods()) {
-            
+         foreach (MethodInfo m in type.GetMethods()) 
             foreach (Attribute a in m.GetCustomAttributes(true)) {
                DeBugInfo dbi = (DeBugInfo)a;
                
