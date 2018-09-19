@@ -24,6 +24,8 @@ before_install:
     # Set the commit email
     - git config --global user.email "43331169+elemental9@users.noreply.github.com"
 
+    # Make all the shell files in the ci folder executable
+    - find $TRAVIS_BUILD_DIR/ci -type f -iname "*.sh" -exec chmod +x {} \;
 
 script:
     # Navigate to the primary code directory
