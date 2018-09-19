@@ -77,9 +77,7 @@ namespace BingoConLabels
 				label.BackColor = Color.White;
 				label.Text = "";
 			}
-
 		}
-
 		private void nuevoJuegoToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			int RandomNumber = RandomClass.Next(1, 100);
@@ -102,8 +100,6 @@ namespace BingoConLabels
 				AboutBox1 form = new AboutBox1();
 				form.Show();
 				// or
-
-
 		}
 	}
 }
