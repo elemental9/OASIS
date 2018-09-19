@@ -25,7 +25,6 @@ public class HelloWorldScript : MonoBehaviour {
 					pos.x -= speed * Time.deltaTime;
 			}
 
-
 			transform.position = pos;
 	}
 }
