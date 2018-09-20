@@ -1,15 +1,8 @@
-# Disable sudo to speed up the build
-sudo:              false
+# Do not install anything extra onto the image
+language:          generic
 
-# Set the default build language
-language:          csharp
-
-# Set the build version
-mono:
-  - latest
-
-# Set the solution file
-#solution:         solution-name.sln
+# Use a Mac OSX image
+os:                osx
 
 # Set the default build branch
 branches:          master
@@ -27,18 +20,43 @@ before_install:
     # Make all the shell files in the ci folder executable
     - find $TRAVIS_BUILD_DIR/ci -type f -iname "*.sh" -exec chmod +x {} \;
 
-script:
-    # Navigate to the primary code directory
-    - cd primary_code
+    # Get the current date and print it out
+    - DATE=`date +%d-%m-%Y`
+    - echo $DATE
 
-    # Compile all of the csharp files
-    - find -type f -name "*.cs" -exec csc "{}" || exit 1 \;
+    # Get the current time and print it out
+    - TIME=`date +"%r"`
+    - echo $TIME
+
+# Run the script to download and install Unity editor
+install:
+    - sudo -E sh ./ci/install.sh
+
+# Run the script for unit tests and builds
+script:
+    - sudo -E sh ./ci/build.sh
+
+# Prepare the deployment
+before_deploy:
+    - sudo -E sh ./ci/post_build.sh
+
+deploy:
+  provider:        releases
+  api_key:         $github_token
+  file_glob:       true
+  file:            Build/*
+  name:            $DATE - $TIME
+  skip_cleanup:    true
+  on:
+    tags:          true
+
+env:
+    global:
+        # Set code folder
+        - UNITYCI_PROJECT_NAME="primary_code"
+        # GitHub personal access token
+        secure:    SbZDVzigHtnLT+Flq14r14+kuk8sTRrsHyCPZUULVSeazcDPeAPoNbHCh6qZX+cAfkV/hsqJLg0vcFws0VJ+wtrP9+Y392if+Fr+NwXJ5vO+rT2Xi+x2n9ztw8/zdF34g3n1/VqJqUoA+WIoNCJUuzpTQA7+d/IKqPFFA2wXE19tmlsXiWqQWov0vw7PxEY9PFFSF1ox7h0RXE3L+NBqv45cuf8JSADFfWSpOYRDIxX3qsCwv8tTp4dN7gJ5GM/SHWjNuvcjei7jdxTwyAU6q6ttI3b9dqcgBDGhMg3FfJEghC0IPk2JgfaDT3jt/0g6bmdvGt1pTHKrZOg+nJZybLLWo3+ACRy36xYQIQaMTV3fUlsE/tS50kz9Y7/pPdda8pbrfuf3ZDa9RnNojyxbxGGwaVwL050rp+ENV+SmQqYek+GGcnLNZmC4vpmdD4ZSwhlCXOrleNSXkJrLYijPKszrUimQbljnzNXUsA8/Ox/jaZT9/ITYQUkax+4viTZkcNpDYAAAJ0kRgsk86MMfJsU4Ul2YHMXcwzdKh4xdWNMipho6FCBNQrRLGToasFyHUWR36bSZMEZNinmdwcE4N2F/5p175V2eNX9nnDXAC4ENPHRU69dkmuR/jBL4f6l/4oIbOdwJ6+7ycG+e2Hko6kbs0wjU/AQ+qJaY5lVgyhg=
 
 notifications:
     # Disable build status notifications via email
     email:         false
-
-env:
-    global:
-        # GitHub personal access token
-        secure:    SbZDVzigHtnLT+Flq14r14+kuk8sTRrsHyCPZUULVSeazcDPeAPoNbHCh6qZX+cAfkV/hsqJLg0vcFws0VJ+wtrP9+Y392if+Fr+NwXJ5vO+rT2Xi+x2n9ztw8/zdF34g3n1/VqJqUoA+WIoNCJUuzpTQA7+d/IKqPFFA2wXE19tmlsXiWqQWov0vw7PxEY9PFFSF1ox7h0RXE3L+NBqv45cuf8JSADFfWSpOYRDIxX3qsCwv8tTp4dN7gJ5GM/SHWjNuvcjei7jdxTwyAU6q6ttI3b9dqcgBDGhMg3FfJEghC0IPk2JgfaDT3jt/0g6bmdvGt1pTHKrZOg+nJZybLLWo3+ACRy36xYQIQaMTV3fUlsE/tS50kz9Y7/pPdda8pbrfuf3ZDa9RnNojyxbxGGwaVwL050rp+ENV+SmQqYek+GGcnLNZmC4vpmdD4ZSwhlCXOrleNSXkJrLYijPKszrUimQbljnzNXUsA8/Ox/jaZT9/ITYQUkax+4viTZkcNpDYAAAJ0kRgsk86MMfJsU4Ul2YHMXcwzdKh4xdWNMipho6FCBNQrRLGToasFyHUWR36bSZMEZNinmdwcE4N2F/5p175V2eNX9nnDXAC4ENPHRU69dkmuR/jBL4f6l/4oIbOdwJ6+7ycG+e2Hko6kbs0wjU/AQ+qJaY5lVgyhg=
