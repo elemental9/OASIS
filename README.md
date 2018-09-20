@@ -6,7 +6,7 @@ Status:
 
 [![CodeFactor Status](https://www.codefactor.io/repository/github/elemental9/oasis/badge/master?style=for-the-badge)](https://www.codefactor.io/repository/github/elemental9/oasis/overview/master)
 
-This is a build that I am going to create in C sharp and is a VR game.
+This is a build that I am going to create in mostly C# and is a VR game.
 
 > The most valuable person: Richienb
 
@@ -14,6 +14,6 @@ This is a build that I am going to create in C sharp and is a VR game.
 
 > most fixed problems: Elemental9
 
-> 30 fixed errors by Elemental9
+> 30 fixed errors and 4 errors made by Elemental9
 
-> 28 errors made by Richienb
+> 28 errors made and 2 fixed errors by Richienb
