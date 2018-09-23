@@ -38,7 +38,6 @@ namespace VRTK
             /// </summary>
             AxisAndSenseAxisState
         }
-
         [Header("Global Override Settings")]
 
         [Tooltip("Determines whether to ignore all of the given overrides on an Interaction event.")]
@@ -86,7 +85,6 @@ namespace VRTK
         [Range(0f, 1f)]
         public float pinkyOverride;
     }
-
     /// <summary>
     /// Provides a custom controller hand model with psuedo finger functionality.
     /// </summary>
