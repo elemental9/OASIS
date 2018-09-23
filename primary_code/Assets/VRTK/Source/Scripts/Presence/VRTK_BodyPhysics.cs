@@ -15,7 +15,6 @@ namespace VRTK
         public GameObject target;
         public Collider collider;
     }
-
     /// <summary>
     /// Event Payload
     /// </summary>
@@ -69,7 +68,6 @@ namespace VRTK
             /// </summary>
             AlwaysRestrict
         }
-
         [Header("Body Collision Settings")]
 
         [Tooltip("If checked then the body collider and rigidbody will be used to check for rigidbody collisions.")]
@@ -229,7 +227,6 @@ namespace VRTK
         {
             return (bodyRigidbody != null ? !bodyRigidbody.isKinematic : false);
         }
-
         /// <summary>
         /// The ApplyBodyVelocity method applies a given velocity to the rigidbody attached to the body physics.
         /// </summary>
@@ -242,7 +239,6 @@ namespace VRTK
             {
                 TogglePhysics(true);
             }
-
             if (ArePhysicsEnabled())
             {
                 Vector3 appliedGravity = new Vector3(0f, gravityPush, 0f);
@@ -251,7 +247,6 @@ namespace VRTK
                 StartFall(currentValidFloorObject);
             }
         }
-
         /// <summary>
         /// The ToggleOnGround method sets whether the body is considered on the ground or not.
         /// </summary>
@@ -268,7 +263,6 @@ namespace VRTK
                 OnStopTouchingGround(SetBodyPhysicsEvent(null, null));
             }
         }
-
         /// <summary>
         /// The PreventSnapToFloor method sets whether the snap to floor mechanic should be used.
         /// </summary>
@@ -277,7 +271,6 @@ namespace VRTK
         {
             preventSnapToFloor = state;
         }
-
         /// <summary>
         /// The ForceSnapToFloor method disables the prevent snap to floor and forces the snap to nearest floor action.
         /// </summary>
@@ -286,7 +279,6 @@ namespace VRTK
             TogglePreventSnapToFloor(false);
             SnapToNearestFloor();
         }
-
         /// <summary>
         /// The IsFalling method returns the falling state of the body.
         /// </summary>
@@ -295,7 +287,6 @@ namespace VRTK
         {
             return isFalling;
         }
-
         /// <summary>
         /// The IsMoving method returns the moving within play area state of the body.
         /// </summary>
@@ -304,7 +295,6 @@ namespace VRTK
         {
             return isMoving;
         }
-
         /// <summary>
         /// The IsLeaning method returns the leaning state of the user.
         /// </summary>
@@ -313,7 +303,6 @@ namespace VRTK
         {
             return isLeaning;
         }
-
         /// <summary>
         /// The OnGround method returns whether the user is currently standing on the ground or not.
         /// </summary>
@@ -322,7 +311,6 @@ namespace VRTK
         {
             return onGround;
         }
-
         /// <summary>
         /// The GetVelocity method returns the velocity of the body physics rigidbody.
         /// </summary>
@@ -331,7 +319,6 @@ namespace VRTK
         {
             return (bodyRigidbody != null ? bodyRigidbody.velocity : Vector3.zero);
         }
-
         /// <summary>
         /// The GetAngularVelocity method returns the angular velocity of the body physics rigidbody.
         /// </summary>
@@ -340,7 +327,6 @@ namespace VRTK
         {
             return (bodyRigidbody != null ? bodyRigidbody.angularVelocity : Vector3.zero);
         }
-
         /// <summary>
         /// The ResetVelocities method sets the rigidbody velocity and angular velocity to zero to stop the Play Area rigidbody from continuing to move if it has a velocity already.
         /// </summary>
@@ -349,7 +335,6 @@ namespace VRTK
             bodyRigidbody.velocity = Vector3.zero;
             bodyRigidbody.angularVelocity = Vector3.zero;
         }
-
         /// <summary>
         /// The ResetFalling method force stops any falling states and conditions that might be set on this object.
         /// </summary>
@@ -357,7 +342,6 @@ namespace VRTK
         {
             StopFall();
         }
-
         /// <summary>
         /// The GetBodyColliderContainer method returns the auto generated GameObject that contains the body colliders.
         /// </summary>
@@ -367,7 +351,6 @@ namespace VRTK
         {
             return bodyColliderContainer;
         }
-
         /// <summary>
         /// The GetFootColliderContainer method returns the auto generated GameObject that contains the foot colliders.
         /// </summary>
@@ -377,7 +360,6 @@ namespace VRTK
         {
             return footColliderContainer;
         }
-
         /// <summary>
         /// The GetCurrentCollidingObject method returns the object that the body physics colliders are currently colliding with.
         /// </summary>
@@ -386,7 +368,6 @@ namespace VRTK
         {
             return currentCollidingObject;
         }
-
         /// <summary>
         /// The ResetIgnoredCollisions method is used to clear any stored ignored colliders in case the `Ignore Collisions On` array parameter is changed at runtime. This needs to be called manually if changes are made at runtime.
         /// </summary>
@@ -404,10 +385,8 @@ namespace VRTK
                     }
                 }
             }
-
             ignoreCollisionsOnGameObjects.Clear();
         }
-
         /// <summary>
         /// The SweepCollision method tests to see if a collision will occur with the body collider in a given direction and distance.
         /// </summary>
@@ -421,12 +400,10 @@ namespace VRTK
             RaycastHit collisionHit;
             return VRTK_CustomRaycast.CapsuleCast(customRaycast, point1, point2, bodyCollider.radius, direction, maxDistance, out collisionHit, defaultIgnoreLayer, QueryTriggerInteraction.Ignore);
         }
-
         protected virtual void Awake()
         {
             VRTK_SDKManager.AttemptAddBehaviourToToggleOnLoadedSetupChange(this);
         }
-
         protected override void OnEnable()
         {
             base.OnEnable();
@@ -441,7 +418,6 @@ namespace VRTK
             }
             SetupIgnoredCollisions();
         }
-
         protected override void OnDisable()
         {
             base.OnDisable();
@@ -450,12 +426,10 @@ namespace VRTK
             ManageCollisionListeners(false);
             ResetIgnoredCollisions();
         }
-
         protected virtual void OnDestroy()
         {
             VRTK_SDKManager.AttemptRemoveBehaviourToToggleOnLoadedSetupChange(this);
         }
-
         protected virtual void FixedUpdate()
         {
             CheckBodyCollisionsSetting();
@@ -465,7 +439,6 @@ namespace VRTK
 
             lastPlayAreaPosition = (playArea != null ? playArea.position : Vector3.zero);
         }
-
         protected virtual void OnCollisionEnter(Collision collision)
         {
             if (CheckValidCollision(collision.gameObject))
@@ -475,7 +448,6 @@ namespace VRTK
                 OnStartColliding(SetBodyPhysicsEvent(currentCollidingObject, collision.collider));
             }
         }
-
         protected virtual void OnTriggerEnter(Collider collider)
         {
             if (CheckValidCollision(collider.gameObject))
@@ -483,9 +455,7 @@ namespace VRTK
                 currentCollidingObject = collider.gameObject;
                 OnStartColliding(SetBodyPhysicsEvent(currentCollidingObject, collider));
             }
-
         }
-
         protected virtual void OnCollisionExit(Collision collision)
         {
             if (CheckExistingCollision(collision.gameObject))
@@ -494,7 +464,6 @@ namespace VRTK
                 currentCollidingObject = null;
             }
         }
-
         protected virtual void OnTriggerExit(Collider collider)
         {
             if (CheckExistingCollision(collider.gameObject))
@@ -503,7 +472,6 @@ namespace VRTK
                 currentCollidingObject = null;
             }
         }
-
         protected virtual void OnDrawGizmos()
         {
             if (drawDebugGizmo && headset != null)
@@ -514,17 +482,14 @@ namespace VRTK
                 Gizmos.DrawSphere(new Vector3(currentStandingPosition.x, headset.position.y - 0.3f, currentStandingPosition.y), 0.05f);
             }
         }
-
         protected virtual bool CheckValidCollision(GameObject checkObject)
         {
             return (!VRTK_PlayerObject.IsPlayerObject(checkObject) && (!onGround || (currentValidFloorObject != null && currentValidFloorObject != checkObject)));
         }
-
         protected virtual bool CheckExistingCollision(GameObject checkObject)
         {
             return (currentCollidingObject != null && currentCollidingObject == checkObject);
         }
-
         protected virtual void SetupPlayArea()
         {
             playArea = VRTK_DeviceFinder.PlayAreaTransform();
@@ -539,7 +504,6 @@ namespace VRTK
                 ManageCollisionListeners(true);
             }
         }
-
         protected virtual void SetupHeadset()
         {
             headset = VRTK_DeviceFinder.HeadsetTransform();
@@ -548,7 +512,6 @@ namespace VRTK
                 currentStandingPosition = new Vector2(headset.position.x, headset.position.z);
             }
         }
-
         protected virtual void ManageCollisionListeners(bool state)
         {
             if (collisionTracker != null)
@@ -569,27 +532,22 @@ namespace VRTK
                 }
             }
         }
-
         protected virtual void CollisionTracker_TriggerExit(object sender, CollisionTrackerEventArgs e)
         {
             OnTriggerExit(e.collider);
         }
-
         protected virtual void CollisionTracker_TriggerEnter(object sender, CollisionTrackerEventArgs e)
         {
             OnTriggerEnter(e.collider);
         }
-
         protected virtual void CollisionTracker_CollisionExit(object sender, CollisionTrackerEventArgs e)
         {
             OnCollisionExit(e.collision);
         }
-
         protected virtual void CollisionTracker_CollisionEnter(object sender, CollisionTrackerEventArgs e)
         {
             OnCollisionEnter(e.collision);
         }
-
         protected virtual void OnStartFalling(BodyPhysicsEventArgs e)
         {
             if (StartFalling != null)
@@ -597,7 +555,6 @@ namespace VRTK
                 StartFalling(this, e);
             }
         }
-
         protected virtual void OnStopFalling(BodyPhysicsEventArgs e)
         {
             if (StopFalling != null)
@@ -605,7 +562,6 @@ namespace VRTK
                 StopFalling(this, e);
             }
         }
-
         protected virtual void OnStartMoving(BodyPhysicsEventArgs e)
         {
             if (StartMoving != null)
@@ -613,7 +569,6 @@ namespace VRTK
                 StartMoving(this, e);
             }
         }
-
         protected virtual void OnStopMoving(BodyPhysicsEventArgs e)
         {
             if (StopMoving != null)
@@ -621,7 +576,6 @@ namespace VRTK
                 StopMoving(this, e);
             }
         }
-
         protected virtual void OnStartColliding(BodyPhysicsEventArgs e)
         {
             if (StartColliding != null)
@@ -629,7 +583,6 @@ namespace VRTK
                 StartColliding(this, e);
             }
         }
-
         protected virtual void OnStopColliding(BodyPhysicsEventArgs e)
         {
             if (StopColliding != null)
@@ -637,7 +590,6 @@ namespace VRTK
                 StopColliding(this, e);
             }
         }
-
         protected virtual void OnStartLeaning(BodyPhysicsEventArgs e)
         {
             if (StartLeaning != null)
@@ -645,7 +597,6 @@ namespace VRTK
                 StartLeaning(this, e);
             }
         }
-
         protected virtual void OnStopLeaning(BodyPhysicsEventArgs e)
         {
             if (StopLeaning != null)
@@ -653,7 +604,6 @@ namespace VRTK
                 StopLeaning(this, e);
             }
         }
-
         protected virtual void OnStartTouchingGround(BodyPhysicsEventArgs e)
         {
             if (StartTouchingGround != null)
@@ -661,7 +611,6 @@ namespace VRTK
                 StartTouchingGround(this, e);
             }
         }
-
         protected virtual void OnStopTouchingGround(BodyPhysicsEventArgs e)
         {
             if (StopTouchingGround != null)
@@ -669,7 +618,6 @@ namespace VRTK
                 StopTouchingGround(this, e);
             }
         }
-
         protected virtual BodyPhysicsEventArgs SetBodyPhysicsEvent(GameObject target, Collider collider)
         {
             BodyPhysicsEventArgs e;
@@ -677,12 +625,10 @@ namespace VRTK
             e.collider = collider;
             return e;
         }
-
         protected virtual void CalculateVelocity()
         {
             playAreaVelocity = (playArea != null ? (playArea.position - lastPlayAreaPosition) / Time.fixedDeltaTime : Vector3.zero);
         }
-
         protected virtual void TogglePhysics(bool state)
         {
             if (bodyRigidbody != null)
@@ -697,10 +643,8 @@ namespace VRTK
             {
                 footCollider.isTrigger = !state;
             }
-
             currentBodyCollisionsSetting = state;
         }
-
         protected virtual void ManageFalling()
         {
             if (!isFalling)
@@ -713,7 +657,6 @@ namespace VRTK
                 CheckFalling();
             }
         }
-
         protected virtual void CheckBodyCollisionsSetting()
         {
             if (enableBodyCollisions != currentBodyCollisionsSetting)
@@ -721,7 +664,6 @@ namespace VRTK
                 TogglePhysics(enableBodyCollisions);
             }
         }
-
         protected virtual void CheckFalling()
         {
             if (isFalling && fallMinTime < Time.time && VRTK_SharedMethods.RoundFloat(lastPlayAreaPosition.y, fallCheckPrecision) == VRTK_SharedMethods.RoundFloat(playArea.position.y, fallCheckPrecision))
@@ -729,7 +671,6 @@ namespace VRTK
                 StopFall();
             }
         }
-
         protected virtual void SetCurrentStandingPosition()
         {
             if (playArea != null && playArea.transform.position != lastPlayAreaPosition)
@@ -738,7 +679,6 @@ namespace VRTK
                 currentStandingPosition = new Vector2(currentStandingPosition.x + playareaDifference.x, currentStandingPosition.y + playareaDifference.z);
             }
         }
-
         protected virtual void SetIsMoving(Vector2 currentHeadsetPosition)
         {
             float moveDistance = Vector2.Distance(currentHeadsetPosition, currentStandingPosition);
@@ -749,7 +689,6 @@ namespace VRTK
                 isMoving = false;
             }
         }
-
         protected virtual void CheckLean()
         {
             if (bodyCollider != null)
@@ -768,7 +707,6 @@ namespace VRTK
                 {
                     return;
                 }
-
                 //reset the headset x rotation so the forward ray is always horizontal regardless of the headset rotation
                 Quaternion storedRotation = headset.rotation;
                 headset.rotation = new Quaternion(0f, headset.rotation.y, headset.rotation.z, headset.rotation.w);
@@ -784,12 +722,10 @@ namespace VRTK
                 {
                     CalculateLean(standingDownRayStartPosition, forwardLength, standingDownRayCollision.distance);
                 }
-
                 //put the headset rotation back
                 headset.rotation = storedRotation;
             }
         }
-
         protected virtual void CalculateLean(Vector3 startPosition, float forwardLength, float originalRayDistance)
         {
             //Cast the new down ray based on the position of the end of the forward ray but still at a flat plane of the headset forward (i.e. no headset rotation)
@@ -821,7 +757,6 @@ namespace VRTK
                 }
             }
         }
-
         protected virtual void UpdateStandingPosition(Vector2 currentHeadsetPosition)
         {
             VRTK_SharedMethods.AddListValue(standingPositionHistory, currentHeadsetPosition);
@@ -835,13 +770,11 @@ namespace VRTK
                         float currentDistance = Vector2.Distance(standingPositionHistory[i], standingPositionHistory[standingHistorySamples]);
                         resetStandingPosition = (currentDistance <= movementThreshold ? resetStandingPosition : false);
                     }
-
                     currentStandingPosition = (resetStandingPosition ? currentHeadsetPosition : currentStandingPosition);
                 }
                 standingPositionHistory.Clear();
             }
         }
-
         protected virtual void CheckHeadsetMovement()
         {
             bool currentIsMoving = isMoving;
@@ -854,13 +787,11 @@ namespace VRTK
             {
                 TogglePhysics(!isMoving);
             }
-
             if (currentIsMoving != isMoving)
             {
                 MovementChanged(isMoving);
             }
         }
-
         protected virtual void MovementChanged(bool movementState)
         {
             if (movementState)
@@ -872,7 +803,6 @@ namespace VRTK
                 OnStopMoving(SetBodyPhysicsEvent(null, null));
             }
         }
-
         protected virtual void EnableDropToFloor()
         {
             initialFloorDrop = false;
@@ -883,7 +813,6 @@ namespace VRTK
                 teleporter.Teleported += Teleported;
             }
         }
-
         protected virtual void DisableDropToFloor()
         {
             if (teleporter != null)
@@ -891,7 +820,6 @@ namespace VRTK
                 teleporter.Teleported -= Teleported;
             }
         }
-
         protected virtual void Teleported(object sender, DestinationMarkerEventArgs e)
         {
             initialFloorDrop = false;
@@ -901,7 +829,6 @@ namespace VRTK
                 TogglePhysics(storedCurrentPhysics);
             }
         }
-
         protected virtual void EnableBodyPhysics()
         {
             currentBodyCollisionsSetting = enableBodyCollisions;
@@ -910,14 +837,12 @@ namespace VRTK
             InitControllerListeners(VRTK_DeviceFinder.GetControllerLeftHand(), true);
             InitControllerListeners(VRTK_DeviceFinder.GetControllerRightHand(), true);
         }
-
         protected virtual void DisableBodyPhysics()
         {
             DestroyCollider();
             InitControllerListeners(VRTK_DeviceFinder.GetControllerLeftHand(), false);
             InitControllerListeners(VRTK_DeviceFinder.GetControllerRightHand(), false);
         }
-
         protected virtual void SetupIgnoredCollisions()
         {
             ResetIgnoredCollisions();
@@ -925,7 +850,6 @@ namespace VRTK
             {
                 return;
             }
-
             for (int i = 0; i < ignoreCollisionsWith.Length; i++)
             {
                 Collider[] objectColliders = ignoreCollisionsWith[i].GetComponentsInChildren<Collider>();
@@ -933,7 +857,6 @@ namespace VRTK
                 {
                     ManagePhysicsCollider(objectColliders[j], true);
                 }
-
                 if (objectColliders.Length > 0)
                 {
                     ignoreCollisionsOnGameObjects.Add(ignoreCollisionsWith[i]);
