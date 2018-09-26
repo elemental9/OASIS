@@ -702,7 +702,6 @@ namespace VRTK
                 }
             }
         }
-
         protected virtual void MirrorHand()
         {
             Transform modelTransform = (handModel != null ? handModel : transform.Find("Model"));
@@ -711,7 +710,6 @@ namespace VRTK
                 modelTransform.localScale = new Vector3(modelTransform.localScale.x * -1f, modelTransform.localScale.y, modelTransform.localScale.z);
             }
         }
-
         protected virtual void SetOverrideValue(int stateIndex, ref OverrideState[] overrideState, OverrideState stateValue)
         {
             overrideState[stateIndex] = stateValue;
@@ -748,20 +746,16 @@ namespace VRTK
                     SetFingerPosition(arrayIndex, fingerAxis[arrayIndex]);
                 }
             }
-
             //Final sanity check, if you're not touching anything but the override is still set, then clear the override.
             if (((interactTouch == null && interactNearTouch == null) || (interactNearTouch == null && interactTouch.GetTouchedObject() == null) || (interactNearTouch != null && interactNearTouch.GetNearTouchedObjects().Count == 0)) && overrideAxisValues[arrayIndex] != OverrideState.NoOverride)
             {
                 SetOverrideValue(arrayIndex, ref overrideAxisValues, OverrideState.NoOverride);
             }
         }
-
         protected virtual void LerpChangePosition(int arrayIndex, float startPosition, float targetPosition, float speed)
         {
             fingerAnimationRoutine[arrayIndex] = StartCoroutine(ChangePosition(arrayIndex, startPosition, targetPosition, speed));
-
         }
-
         protected virtual IEnumerator ChangePosition(int arrayIndex, float startAxis, float targetAxis, float time)
         {
             float elapsedTime = 0f;
