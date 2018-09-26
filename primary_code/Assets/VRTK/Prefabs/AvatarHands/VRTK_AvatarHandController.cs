@@ -98,7 +98,6 @@ namespace VRTK
     /// <example>
     /// `032_Controller_CustomControllerModel` uses the `VRTK_BasicHand` prefab to display custom avatar hands for the left and right controller.
     /// </example>
-    
     public class VRTK_AvatarHandController : MonoBehaviour
   {
         [Header("Hand Settings")]
