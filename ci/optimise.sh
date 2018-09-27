@@ -2,4 +2,4 @@
 
 uncrustify -c .uncrustify.cfg
 
-./commitpush.sh "CI | Optimised the files with uncrustify [skip ci]"
+./ci/commitpush.sh "CI | Optimised the files with uncrustify [skip ci]"

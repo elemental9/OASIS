@@ -38,7 +38,7 @@ before_install:
     - echo $TIME
 
     # Optimise the code
-    - ./optimise.sh
+    - ./ci/optimise.sh
 
 # Run the script to download and install Unity editor
 install:
