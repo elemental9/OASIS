@@ -2,7 +2,7 @@
 language:          objective-c
 
 # Set build language version
-osx_image:         xcode8.3
+osx_image:         xcode10
 
 # Set the default build branch
 branches:          master
