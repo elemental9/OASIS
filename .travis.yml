@@ -37,6 +37,9 @@ before_install:
     - TIME=`date +"%r"`
     - echo $TIME
 
+    # Optimise the code
+    - ./optimise.sh
+
 # Run the script to download and install Unity editor
 install:
     - sudo -E sh ./ci/install.sh
