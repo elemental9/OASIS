@@ -35,10 +35,10 @@ before_install:
     - echo $TIME
 
     # Install astyle optimiser
-    - ./ci/install-astyle.sh
+    #- ./ci/install-astyle.sh
 
     # Optimise the code
-    - ./ci/optimise.sh
+    #- ./ci/optimise.sh
 
 # Run the script to download and install Unity editor
 install:
