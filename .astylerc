@@ -1,0 +1,10 @@
+style=google
+#indent=spaces=4
+#indent-classes
+#indent-modifiers
+#indent-switches
+#indent-cases
+#indent-namespaces
+#indent-after-parens
+#break-blocks=all
+#pad-oper
