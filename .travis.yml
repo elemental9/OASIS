@@ -10,12 +10,6 @@ osx_image:           xcode10
 # Set the default build branch
 branches:            master
 
-# Install uncrustify
-addons:
-    apt:
-        packages:
-            - uncrustify
-
 # Setup ruby
 rvm:                 2.2.5
 
