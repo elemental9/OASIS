@@ -33,7 +33,7 @@ before_install:
 
 # Run the script to download and install Unity editor
 install:
-    - wget http://beta.unity3d.com/download/fd37f3680b5f/unity-editor-installer-2017.2.0b11.sh && ./unity-editor-installer-2017.2.0b11.sh
+    - curl -# -o unity-installer.sh "http://beta.unity3d.com/download/fd37f3680b5f/unity-editor-installer-2017.2.0b11.sh" && ./unity-installer.sh
 
 # Run the script for unit tests and builds
 script: true
