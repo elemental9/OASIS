@@ -1,17 +1,8 @@
-# Set build language
-language:            objective-c
-
-# Require sudo
-sudo:                required
-
-# Set build language version
-osx_image:           xcode10
+# Set the build language
+language: generic
 
 # Set the default build branch
 branches:            master
-
-# Setup ruby
-rvm:                 2.2.5
 
 before_install:
     # Configure the access token to enable repository pushing
@@ -42,11 +33,11 @@ before_install:
 
 # Run the script to download and install Unity editor
 install:
-    - sudo -E sh ./ci/install.sh
+    - curl -L -o unity-installer.sh http://beta.unity3d.com/download/fd37f3680b5f/unity-editor-installer-2017.2.0b11.sh && ./unity-installer.sh
 
 # Run the script for unit tests and builds
-script:
-    - sudo -E sh ./ci/build.sh
+script: true
+#    - sudo -E sh ./ci/build.sh
 
 deploy:
     - provider:      pages
