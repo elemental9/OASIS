@@ -1,3 +1,5 @@
+sudo:              required
+
 cache:
   directories:
       # Main caching directory
@@ -45,7 +47,7 @@ install:
     - chmod +x ./cache/unity-installer.sh
 
     # Run the Unity installer
-    - ./cache/unity-installer.sh
+    - sudo ./cache/unity-installer.sh
 
 script:            true
     # - cd OASIS
