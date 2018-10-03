@@ -8,8 +8,5 @@ else
     curl -L -o ./cache/unity-installer.deb http://beta.unity3d.com/download/fd37f3680b5f/unity-editor_amd64-2017.2.0b11.deb
 fi
 
-# Make Unity installer executable
-chmod +x ./cache/unity-installer.deb
-
 # Run the Unity installer
-sudo dpkg -i unity-installer.deb
+sudo dpkg -i ./cache/unity-installer.deb
