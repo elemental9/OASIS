@@ -1,8 +1,21 @@
+cache:
+  directories:
+      # Main caching directory
+      - $HOME/.cache
+      # Specialised caching directory
+      - $TRAVIS_BUILD_DIR/cache
+
 # Set the build language
-language: generic
+language:          generic
 
 # Set the default build branch
-branches:            master
+branches:          master
+
+addons:
+    apt:
+        packages:
+            # Install the Astyle beautifier
+            - astyle
 
 before_install:
     # Configure the access token to enable repository pushing
@@ -17,51 +30,50 @@ before_install:
     # Make all the shell files in the ci folder executable
     - find $TRAVIS_BUILD_DIR/ci -type f -iname "*.sh" -exec chmod +x {} \;
 
-    # Get the current date and print it out
+    # Get the current date and time
     - DATE=`date +%d-%m-%Y`
-    - echo $DATE
-
-    # Get the current time and print it out
     - TIME=`date +"%r"`
-    - echo $TIME
-
-    # Install astyle optimiser
-    #- ./ci/install-astyle.sh
 
     # Optimise the code
     #- ./ci/optimise.sh
 
-# Run the script to download and install Unity editor
 install:
-    - wget -nv -O unity-installer.sh "http://beta.unity3d.com/download/fd37f3680b5f/unity-editor-installer-2017.2.0b11.sh" && ./unity-installer.sh
+    # Download the Unity installer
+    - curl -L -o cache/unity-installer.sh http://beta.unity3d.com/download/fd37f3680b5f/unity-editor-installer-2017.2.0b11.sh
 
-# Run the script for unit tests and builds
-script: true
-#    - sudo -E sh ./ci/build.sh
+    # Make Unity installer executable
+    - chmod +x ./cache/unity-installer.sh
 
-deploy:
-    - provider:      pages
-      skip-cleanup:  true
-      github-token:  $github_token
-      local-dir:     docs
-      on:
-          branch:    master
-    - provider:      releases
-      api_key:       $github_token
-      file_glob:     true
-      file:          dist/*
-      name:          "Edge Release: $DATE - $TIME"
-      skip_cleanup:  true
-      on:
-          tags:      true
+    # Run the Unity installer
+    - ./cache/unity-installer.sh
+
+script:            true
+    # - cd OASIS
+    # - Unity -quit -batchmode -executeMethod WebGLBuilder.build
+    # - cd ..
+    # - cp -r $TRAVIS_BUILD_DIR/OASIS/dist/Build/* $TRAVIS_BUILD_DIR/site/play/game
+    # - zip -r game.zip site/*
+
+# deploy:
+#     - provider:  pages
+#       skip-cleanup: true
+#       github-token: $github_token
+#       local-dir: site
+#       on:
+#           branch: master
+#     - provider:  releases
+#       api_key:   $github_token
+#       file:      game.zip
+#       name:          "Edge Release: $DATE - $TIME"
+#       skip_cleanup: true
+#       on:
+#           tags:  true
 
 env:
     global:
-        # Set code folder
-        - UNITYCI_PROJECT_NAME="primary_code"
         # GitHub personal access token
-        - secure:    SbZDVzigHtnLT+Flq14r14+kuk8sTRrsHyCPZUULVSeazcDPeAPoNbHCh6qZX+cAfkV/hsqJLg0vcFws0VJ+wtrP9+Y392if+Fr+NwXJ5vO+rT2Xi+x2n9ztw8/zdF34g3n1/VqJqUoA+WIoNCJUuzpTQA7+d/IKqPFFA2wXE19tmlsXiWqQWov0vw7PxEY9PFFSF1ox7h0RXE3L+NBqv45cuf8JSADFfWSpOYRDIxX3qsCwv8tTp4dN7gJ5GM/SHWjNuvcjei7jdxTwyAU6q6ttI3b9dqcgBDGhMg3FfJEghC0IPk2JgfaDT3jt/0g6bmdvGt1pTHKrZOg+nJZybLLWo3+ACRy36xYQIQaMTV3fUlsE/tS50kz9Y7/pPdda8pbrfuf3ZDa9RnNojyxbxGGwaVwL050rp+ENV+SmQqYek+GGcnLNZmC4vpmdD4ZSwhlCXOrleNSXkJrLYijPKszrUimQbljnzNXUsA8/Ox/jaZT9/ITYQUkax+4viTZkcNpDYAAAJ0kRgsk86MMfJsU4Ul2YHMXcwzdKh4xdWNMipho6FCBNQrRLGToasFyHUWR36bSZMEZNinmdwcE4N2F/5p175V2eNX9nnDXAC4ENPHRU69dkmuR/jBL4f6l/4oIbOdwJ6+7ycG+e2Hko6kbs0wjU/AQ+qJaY5lVgyhg=
+        - secure:  SbZDVzigHtnLT+Flq14r14+kuk8sTRrsHyCPZUULVSeazcDPeAPoNbHCh6qZX+cAfkV/hsqJLg0vcFws0VJ+wtrP9+Y392if+Fr+NwXJ5vO+rT2Xi+x2n9ztw8/zdF34g3n1/VqJqUoA+WIoNCJUuzpTQA7+d/IKqPFFA2wXE19tmlsXiWqQWov0vw7PxEY9PFFSF1ox7h0RXE3L+NBqv45cuf8JSADFfWSpOYRDIxX3qsCwv8tTp4dN7gJ5GM/SHWjNuvcjei7jdxTwyAU6q6ttI3b9dqcgBDGhMg3FfJEghC0IPk2JgfaDT3jt/0g6bmdvGt1pTHKrZOg+nJZybLLWo3+ACRy36xYQIQaMTV3fUlsE/tS50kz9Y7/pPdda8pbrfuf3ZDa9RnNojyxbxGGwaVwL050rp+ENV+SmQqYek+GGcnLNZmC4vpmdD4ZSwhlCXOrleNSXkJrLYijPKszrUimQbljnzNXUsA8/Ox/jaZT9/ITYQUkax+4viTZkcNpDYAAAJ0kRgsk86MMfJsU4Ul2YHMXcwzdKh4xdWNMipho6FCBNQrRLGToasFyHUWR36bSZMEZNinmdwcE4N2F/5p175V2eNX9nnDXAC4ENPHRU69dkmuR/jBL4f6l/4oIbOdwJ6+7ycG+e2Hko6kbs0wjU/AQ+qJaY5lVgyhg=
 
 notifications:
     # Disable build status notifications via email
-    email:           false
+    email:         false
