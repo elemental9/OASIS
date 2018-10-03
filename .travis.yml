@@ -40,14 +40,7 @@ before_install:
     #- ./ci/optimise.sh
 
 install:
-    # Download the Unity installer
-    - curl -L -o cache/unity-installer.sh http://beta.unity3d.com/download/fd37f3680b5f/unity-editor-installer-2017.2.0b11.sh
-
-    # Make Unity installer executable
-    - chmod +x ./cache/unity-installer.sh
-
-    # Run the Unity installer
-    - sudo ./cache/unity-installer.sh
+    - ./ci/install-unity.sh
 
 script:            true
     # - cd OASIS
