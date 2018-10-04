@@ -42,12 +42,12 @@ before_install:
 install:
     - ./ci/install-unity.sh
 
-script:            true
-    # - cd OASIS
-    # - Unity -quit -batchmode -executeMethod WebGLBuilder.build
-    # - cd ..
-    # - cp -r $TRAVIS_BUILD_DIR/OASIS/dist/Build/* $TRAVIS_BUILD_DIR/site/play/game
-    # - zip -r game.zip site/*
+script:
+    - cd OASIS
+    - ./opt/Unity/Editor/Unity -quit -batchmode -executeMethod WebGLBuilder.build
+    - cd ..g
+    - cp -r $TRAVIS_BUILD_DIR/OASIS/dist/Build/* $TRAVIS_BUILD_DIR/site/play/game
+    - zip -r game.zip site/*
 
 # deploy:
 #     - provider:  pages
