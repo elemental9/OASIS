@@ -17,7 +17,7 @@ addons:
     apt:
         packages:
             # Install the Astyle beautifier
-            -astyle          
+            -astyle
             # Install the depencencies needed for Unity
             - lib32gcc1
             - lib32stdc++6
