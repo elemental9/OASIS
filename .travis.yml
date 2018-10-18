@@ -16,14 +16,13 @@ branches:          master
 addons:
     apt:
         packages:
-# Install the Astyle beautifier
-- astyle          
+            # Install the Astyle beautifier
+            -astyle          
             # Install the depencencies needed for Unity
             - lib32gcc1
             - lib32stdc++6
             - libc6-i386
             - npm
-
 before_install:
     # Configure the access token to enable repository pushing
     - git remote set-url origin https://elemental9:${github_token}@github.com/elemental9/OASIS.git
