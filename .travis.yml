@@ -44,7 +44,6 @@ before_install:
 
     # Optimise the code
     #- ./ci/optimise.sh
-
 install:
     - ./ci/install-unity.sh
 
@@ -69,7 +68,6 @@ script:
 #       skip_cleanup: true
 #       on:
 #           tags:  true
-
 env:
     global:
         # GitHub personal access token
