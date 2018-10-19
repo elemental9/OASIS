@@ -55,7 +55,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
 	            }
 #endif
             }
-
 #if !MOBILE_INPUT
             public bool Running
             {
@@ -63,8 +62,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
 #endif
         }
-
-
         [Serializable]
         public class AdvancedSettings
         {
@@ -75,13 +72,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             [Tooltip("set it to 0.1 or more if you get stuck in wall")]
             public float shellOffset; //reduce the radius by that ratio to avoid getting stuck in wall (a value of 0.1f is nice)
         }
-
-
         public Camera cam;
         public MovementSettings movementSettings = new MovementSettings();
         public MouseLook mouseLook = new MouseLook();
         public AdvancedSettings advancedSettings = new AdvancedSettings();
-
 
         private Rigidbody m_RigidBody;
         private CapsuleCollider m_Capsule;
@@ -89,22 +83,18 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private Vector3 m_GroundContactNormal;
         private bool m_Jump, m_PreviouslyGrounded, m_Jumping, m_IsGrounded;
 
-
         public Vector3 Velocity
         {
             get { return m_RigidBody.velocity; }
         }
-
         public bool Grounded
         {
             get { return m_IsGrounded; }
         }
-
         public bool Jumping
         {
             get { return m_Jumping; }
         }
-
         public bool Running
         {
             get
@@ -116,16 +106,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
 #endif
             }
         }
-
-
         private void Start()
         {
             m_RigidBody = GetComponent<Rigidbody>();
             m_Capsule = GetComponent<CapsuleCollider>();
             mouseLook.Init (transform, cam.transform);
         }
-
-
         private void Update()
         {
             RotateView();
@@ -135,8 +121,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_Jump = true;
             }
         }
-
-
         private void FixedUpdate()
         {
             GroundCheck();
@@ -157,7 +141,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     m_RigidBody.AddForce(desiredMove*SlopeMultiplier(), ForceMode.Impulse);
                 }
             }
-
             if (m_IsGrounded)
             {
                 m_RigidBody.drag = 5f;
@@ -185,15 +168,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
             m_Jump = false;
         }
-
-
         private float SlopeMultiplier()
         {
             float angle = Vector3.Angle(m_GroundContactNormal, Vector3.up);
             return movementSettings.SlopeCurveModifier.Evaluate(angle);
         }
-
-
         private void StickToGroundHelper()
         {
             RaycastHit hitInfo;
@@ -207,11 +186,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 }
             }
         }
-
-
         private Vector2 GetInput()
-        {
-            
+        { 
             Vector2 input = new Vector2
                 {
                     x = CrossPlatformInputManager.GetAxis("Horizontal"),
@@ -220,8 +196,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			movementSettings.UpdateDesiredTargetSpeed(input);
             return input;
         }
-
-
         private void RotateView()
         {
             //avoids the mouse looking if the game is effectively paused
@@ -239,7 +213,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_RigidBody.velocity = velRotation*m_RigidBody.velocity;
             }
         }
-
         /// sphere cast down just beyond the bottom of the capsule to see if the capsule is colliding round the bottom
         private void GroundCheck()
         {
